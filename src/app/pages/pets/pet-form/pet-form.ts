@@ -15,7 +15,8 @@ import { TutorService } from '../../../service/tutores/tutor.service';
   styleUrl: './pet-form.scss'
 })
 export class PetFormComponent implements OnInit {
-  pet: Pet = { id: 0, nome: '', especie: '', raca: '', nascimento: '', tutorId: 0 };
+  // Usar Partial<Pet> torna todas as propriedades, incluindo 'id', opcionais.
+  pet: Partial<Pet> = { nome: '', especie: '', raca: '', nascimento: '', tutorId: undefined };
   tutores: Tutor[] = [];
   isEdit: boolean = false;
 
@@ -39,13 +40,16 @@ export class PetFormComponent implements OnInit {
   }
 
   salvar(): void {
-    // Garante que o tutorId seja um número
-    this.pet.tutorId = +this.pet.tutorId;
+    if (!this.pet.tutorId && this.pet.tutorId !== 0) {
+      alert('Por favor, selecione um tutor.');
+      return;
+    }
 
-    const operation = this.isEdit
-      ? this.petService.atualizar(this.pet.id, this.pet)
-      : this.petService.criar(this.pet);
-
-    operation.subscribe(() => this.router.navigate(['/pets']));
+    // Agora, usamos o objeto 'this.pet' diretamente, pois o tutorId já está correto.
+    if (this.isEdit && this.pet.id) {
+      this.petService.atualizar(this.pet.id, this.pet as Pet).subscribe(() => this.router.navigate(['/pets']));
+    } else {
+      this.petService.criar(this.pet as Omit<Pet, 'id'>).subscribe(() => this.router.navigate(['/pets']));
+    }
   }
 }
