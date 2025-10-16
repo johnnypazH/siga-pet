@@ -1,0 +1,51 @@
+/* Importando estilos compartilhados para consistência */
+@use "../../tutores/tutor-list/tutor-list.scss";
+
+.toolbar {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão 'Novo' à direita */
+}
+
+/* Estilos da tabela (herdado do tutor-list, mas pode ter ajustes específicos aqui) */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+
+  thead {
+    tr {
+      background-color: #f8f9fa;
+    }
+  }
+
+  th,
+  td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: #f1f3f5;
+      }
+
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+
+    td {
+      .btn {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

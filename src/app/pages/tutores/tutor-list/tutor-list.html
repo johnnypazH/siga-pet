@@ -1,0 +1,32 @@
+<h2>Gerenciamento de Tutores</h2>
+
+<div class="toolbar">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="termoBusca" placeholder="Buscar tutor por nome..." class="form-control">
+  </div>
+  <a routerLink="/tutores/novo" class="btn btn-primary">Novo Tutor</a>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Telefone</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tutor of tutores | filtroTutor:termoBusca">
+      <td>{{ tutor.id }}</td>
+      <td>{{ tutor.nome }}</td>
+      <td>{{ tutor.email }}</td>
+      <td>{{ tutor.telefone }}</td>
+      <td>
+        <a routerLink="/tutores/editar/{{tutor.id}}" class="btn btn-sm btn-secondary">Editar</a>
+        <button class="btn btn-sm btn-danger" (click)="excluir(tutor.id)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

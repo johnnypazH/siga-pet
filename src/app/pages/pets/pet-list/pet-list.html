@@ -1,0 +1,33 @@
+<h2>Gerenciamento de Pets</h2>
+
+<div class="toolbar">
+  <a routerLink="/pets/novo" class="btn btn-primary">Novo Pet</a>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Espécie</th>
+      <th>Raça</th>
+      <th>Nascimento</th>
+      <th>Tutor</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pet of pets">
+      <td>{{ pet.id }}</td>
+      <td>{{ pet.nome }}</td>
+      <td>{{ pet.especie }}</td>
+      <td>{{ pet.raca }}</td>
+      <td>{{ pet.nascimento | date:'dd/MM/yyyy' }}</td>
+      <td>{{ pet.tutor?.nome }}</td>
+      <td>
+        <a routerLink="/pets/editar/{{pet.id}}" class="btn btn-sm btn-secondary">Editar</a>
+        <button class="btn btn-sm btn-danger" (click)="excluir(pet.id)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

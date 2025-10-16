@@ -1,0 +1,48 @@
+{
+  "tutores": [
+    {
+      "id": "1",
+      "nome": "João da Silva",
+      "email": "joao.silva@email.com",
+      "telefone": "(51) 99999-1111"
+    },
+    {
+      "id": "0",
+      "nome": "vitoria ss",
+      "email": "vitoriass.@email.com",
+      "telefone": "51888888777"
+    },
+    {
+      "id": "2",
+      "nome": "teste 1",
+      "email": "tessee@email.com",
+      "telefone": "51999999"
+    }
+  ],
+  "pets": [
+    {
+      "id": "1",
+      "nome": "Rex",
+      "especie": "Cachorro",
+      "raca": "Labrador",
+      "nascimento": "2022-05-10",
+      "tutorId": "0"
+    },
+    {
+      "id": "2",
+      "nome": "Mimi",
+      "especie": "Gato",
+      "raca": "Siamês",
+      "nascimento": "2022-11-20",
+      "tutorId": "1"
+    },
+    {
+      "id": "3",
+      "nome": "asas",
+      "especie": "gold",
+      "raca": "braco",
+      "nascimento": "2025-10-08",
+      "tutorId": "2"
+    }
+  ]
+}
