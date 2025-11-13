@@ -1,8 +1,34 @@
-<header class="main-header">
-  <h1>SIGA-PET</h1>
-  <nav>
-    <a routerLink="/tutores" routerLinkActive="active">Gerenciar Tutores</a>
-    <a routerLink="/pets" routerLinkActive="active">Gerenciar Pets</a>
-  </nav>
-</header>
-<main class="container"><router-outlet /></main>
+<!-- Cabeçalho (Navbar) do Bootstrap -->
+<!-- A classe 'navbar-dark' e 'bg-primary' farão o fundo usar nosso verde-água! -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm py-3">
+  <div class="container">
+    <!-- Brand/Logo -->
+    <a class="navbar-brand" routerLink="/">
+      <i class="bi bi-heart-pulse-fill me-2"></i> <!-- Ícone -->
+      SIGA-PET
+    </a>
+
+    <!-- Links da Navegação -->
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tutores" routerLinkActive="active">Gerenciar Tutores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/pets" routerLinkActive="active">Gerenciar Pets</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Conteúdo Principal da Aplicação -->
+<main><router-outlet /></main>
+
+<!-- Rodapé -->
+<!-- 'mt-auto' empurra o rodapé para o final. 'bg-primary' aplica nossa cor customizada. -->
+<footer class="mt-auto py-4 bg-primary text-center text-white">
+  <div class="container">
+    <span>SIGA-PET &copy; 2024. Todos os direitos reservados.</span>
+  </div>
+</footer>

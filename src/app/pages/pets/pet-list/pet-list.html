@@ -1,33 +1,56 @@
-<h2>Gerenciamento de Pets</h2>
-
-<div class="toolbar">
-  <a routerLink="/pets/novo" class="btn btn-primary">Novo Pet</a>
+<!-- Container principal para centralizar e adicionar espaçamento -->
+<div class="container mt-4">
+  <!-- Card para agrupar o conteúdo da lista -->
+  <div class="card shadow-sm">
+    <!-- Cabeçalho do Card com título e botões/busca -->
+    <div class="card-header bg-light py-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">Gerenciamento de Pets</h2>
+        <div class="d-flex">
+          <!-- Campo de busca -->
+          <div class="input-group me-2">
+            <input type="text" class="form-control" placeholder="Buscar por nome...">
+          </div>
+          <!-- Botão para novo pet -->
+          <a routerLink="/pets/novo" class="btn btn-primary text-nowrap">
+            <i class="bi bi-plus-circle me-1"></i> <!-- Ícone opcional -->
+            Novo Pet
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Corpo do Card com a tabela -->
+    <div class="card-body">
+      <!-- Div para tornar a tabela responsiva em telas pequenas -->
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Espécie</th>
+              <th scope="col">Raça</th>
+              <th scope="col">Nascimento</th>
+              <th scope="col">Tutor</th>
+              <th scope="col" class="text-end">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pet of pets">
+              <th scope="row">{{ pet.id }}</th>
+              <td>{{ pet.nome }}</td>
+              <td>{{ pet.especie }}</td>
+              <td>{{ pet.raca }}</td>
+              <td>{{ pet.nascimento | date:'dd/MM/yyyy' }}</td>
+              <td>{{ pet.tutor?.nome }}</td>
+              <td class="text-end">
+                <a routerLink="/pets/editar/{{pet.id}}" class="btn btn-sm btn-outline-info me-2">Editar</a>
+                <button class="btn btn-sm btn-outline-danger" (click)="excluir(pet.id)">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Nome</th>
-      <th>Espécie</th>
-      <th>Raça</th>
-      <th>Nascimento</th>
-      <th>Tutor</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let pet of pets">
-      <td>{{ pet.id }}</td>
-      <td>{{ pet.nome }}</td>
-      <td>{{ pet.especie }}</td>
-      <td>{{ pet.raca }}</td>
-      <td>{{ pet.nascimento | date:'dd/MM/yyyy' }}</td>
-      <td>{{ pet.tutor?.nome }}</td>
-      <td>
-        <a routerLink="/pets/editar/{{pet.id}}" class="btn btn-sm btn-secondary">Editar</a>
-        <button class="btn btn-sm btn-danger" (click)="excluir(pet.id)">Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>

@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+
+// 1. Defina suas customizações de variáveis do Bootstrap AQUI.
+// Vamos trocar a cor primária azul padrão por um tom de verde-água.
+$primary: #1abc9c; // Um verde-água bem conhecido :)
+
+// 2. Importe os estilos do Bootstrap DEPOIS de definir as variáveis.
+// O Bootstrap vai "ler" a sua variável $primary e aplicar a cor em todos os componentes
+// como botões (.btn-primary), links, etc.
+@import "bootstrap/scss/bootstrap";
+
+// 3. (Opcional) Importe os ícones do Bootstrap que acabamos de instalar.
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+// 4. Adicione estilos globais para a aplicação.
+body {
+  background-color: #f8f9fa; // Um cinza bem claro para o fundo da página.
+  min-height: 100vh; // Garante que o body ocupe no mínimo a altura total da tela.
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+  Isso faz com que o componente principal do Angular se comporte como um container flex
+  e permite que o <main> cresça e empurre o <footer> para baixo.
+*/
+app-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}

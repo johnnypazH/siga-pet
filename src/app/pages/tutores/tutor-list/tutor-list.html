@@ -1,32 +1,52 @@
-<h2>Gerenciamento de Tutores</h2>
-
-<div class="toolbar">
-  <div class="search-container">
-    <input type="text" [(ngModel)]="termoBusca" placeholder="Buscar tutor por nome..." class="form-control">
+<!-- Container principal para centralizar e adicionar espaçamento -->
+<div class="container mt-4">
+  <!-- Card para agrupar o conteúdo da lista -->
+  <div class="card shadow-sm">
+    <!-- Cabeçalho do Card com título e botões/busca -->
+    <div class="card-header bg-light py-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">Gerenciamento de Tutores</h2>
+        <div class="d-flex">
+          <!-- Campo de busca -->
+          <div class="input-group me-2">
+            <input type="text" class="form-control" [(ngModel)]="termoBusca" placeholder="Buscar por nome...">
+          </div>
+          <!-- Botão para novo tutor -->
+          <a routerLink="/tutores/novo" class="btn btn-primary text-nowrap">
+            <i class="bi bi-plus-circle me-1"></i> <!-- Ícone opcional -->
+            Novo Tutor
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Corpo do Card com a tabela -->
+    <div class="card-body">
+      <!-- Div para tornar a tabela responsiva em telas pequenas -->
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Telefone</th>
+              <th scope="col" class="text-end">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tutor of tutores | filtroTutor:termoBusca">
+              <th scope="row">{{ tutor.id }}</th>
+              <td>{{ tutor.nome }}</td>
+              <td>{{ tutor.email }}</td>
+              <td>{{ tutor.telefone }}</td>
+              <td class="text-end">
+                <a routerLink="/tutores/editar/{{tutor.id}}" class="btn btn-sm btn-outline-info me-2">Editar</a>
+                <button class="btn btn-sm btn-outline-danger" (click)="excluir(tutor.id)">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <a routerLink="/tutores/novo" class="btn btn-primary">Novo Tutor</a>
 </div>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Nome</th>
-      <th>E-mail</th>
-      <th>Telefone</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let tutor of tutores | filtroTutor:termoBusca">
-      <td>{{ tutor.id }}</td>
-      <td>{{ tutor.nome }}</td>
-      <td>{{ tutor.email }}</td>
-      <td>{{ tutor.telefone }}</td>
-      <td>
-        <a routerLink="/tutores/editar/{{tutor.id}}" class="btn btn-sm btn-secondary">Editar</a>
-        <button class="btn btn-sm btn-danger" (click)="excluir(tutor.id)">Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>

@@ -11,6 +11,12 @@
       "nome": "vitoria ss",
       "email": "vitoriass.@email.com",
       "telefone": "555555"
+    },
+    {
+      "id": "7d65",
+      "nome": "teste3",
+      "email": "teste3@gmail.com",
+      "telefone": "999999"
     }
   ],
   "pets": [
@@ -29,6 +35,14 @@
       "raca": "azul",
       "nascimento": "2025-10-01",
       "tutorId": "c6a8"
+    },
+    {
+      "id": "151f",
+      "nome": "bingo",
+      "especie": "cao",
+      "raca": "rosa",
+      "nascimento": "2025-08-13",
+      "tutorId": "7d65"
     }
   ]
 }
