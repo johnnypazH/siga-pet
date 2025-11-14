@@ -44,5 +44,31 @@
       "nascimento": "2025-08-13",
       "tutorId": "7d65"
     }
-  ]
+
+  ],
+  "prod":[{
+     "id": "prod01",
+     "nome": "Ração Premium para Cães",
+     "categoria": "Alimentação",
+     "preco": 129.9,
+     "descricao": "Pacote de 15kg de ração super premium para cães adultos de porte médio.",
+     "fotoUrl": "1712602790210_mini.jpg"
+    
+  },{
+     "id": "prod02",
+     "nome": "Arranhador para Gatos",
+     "categoria": "Acessórios",
+     "preco": 89.9,
+     "descricao": "Arranhador de sisal com 3 andares e bolinha de brinquedo.",
+     "fotoUrl": "1725977094714_mini.jpg"
+    
+  },{
+     "id": "prod03",
+     "nome": "Coleira com Guia",
+     "categoria": "Acessórios",
+     "preco": 45.5,
+     "descricao": "Conjunto de coleira e guia em nylon reforçado, cor vermelha.",
+     "fotoUrl": "1725977220500_mini.jpg"
+    
+  }]
 }

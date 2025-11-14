@@ -1,0 +1,11 @@
+// Estilos específicos para a lista de produtos
+
+// Garante que a imagem do card tenha uma altura fixa e se ajuste corretamente.
+.card-img-top {
+  height: 200px;
+  // 'contain' garante que a imagem inteira seja visível, sem cortes.
+  object-fit: contain;
+  // Adiciona um pequeno respiro para a imagem não colar nas bordas.
+  padding: 0.5rem;
+}
+
