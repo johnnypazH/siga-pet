@@ -3,7 +3,7 @@ import { TutorListComponent } from './pages/tutores/tutor-list/tutor-list';
 import { TutorFormComponent } from './pages/tutores/tutor-form/tutor-form';
 import { PetListComponent } from './pages/pets/pet-list/pet-list';
 import { PetFormComponent } from './pages/pets/pet-form/pet-form';
-import { ProdutoListComponent } from './pages/produtos/produto-list/produto-list';
+import { ProdutoListComponent } from './pages/produtos/produto-list';
 export const routes: Routes = [
   { path: 'tutores', component: TutorListComponent },
   { path: 'tutores/novo', component: TutorFormComponent },
