@@ -1,23 +1,54 @@
 <div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="mb-0">Nossos Produtos</h2>
-    <!-- Aqui poderia ter um botão para o carrinho, por exemplo -->
-  </div>
-
-  <!-- Grid de Produtos -->
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <!-- Itera sobre a lista de produtos -->
-    <div class="col" *ngFor="let produto of produtos">
-      <div class="card h-100 shadow-sm">
-        <img [src]="produto.fotoUrl" class="card-img-top" [alt]="produto.nome">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ produto.nome }}</h5>
-          <p class="card-text text-muted flex-grow-1">{{ produto.descricao }}</p>
-          <div class="d-flex justify-content-between align-items-center mt-3">
-            <span class="fs-4 fw-bold text-primary">{{ produto.preco | currency:'BRL' }}</span>
-            <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus-fill me-2"></i>Comprar</a>
+  <div class="card shadow-sm">
+    <div class="card-header bg-light py-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">Gerenciamento de Produtos</h2>
+        <div class="d-flex">
+          <div class="input-group me-2">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Buscar por nome ou categoria..."
+              [value]="termoBusca()"
+              (input)="buscar($event)">
           </div>
+          <a routerLink="/produtos/novo" class="btn btn-primary text-nowrap">
+            <i class="bi bi-plus-circle me-1"></i>
+            Novo Produto
+          </a>
         </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" style="width: 10%;">Foto</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Preço</th>
+              <th scope="col" class="text-end">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="produtosFiltrados().length === 0">
+              <td colspan="5" class="text-center py-4">Nenhum produto encontrado.</td>
+            </tr>
+            <tr *ngFor="let produto of produtosFiltrados()">
+              <td>
+                <img [src]="'img/' + produto.fotoUrl" [alt]="produto.nome" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+              </td>
+              <td>{{ produto.nome }}</td>
+              <td>{{ produto.categoria }}</td>
+              <td>{{ produto.preco | currency:'BRL' }}</td>
+              <td class="text-end">
+                <a routerLink="/produtos/editar/{{produto.id}}" class="btn btn-sm btn-outline-info me-2">Editar</a>
+                <button class="btn btn-sm btn-outline-danger" (click)="excluir(produto.id)">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

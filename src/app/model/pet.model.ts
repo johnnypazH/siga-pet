@@ -1,8 +1,8 @@
 export interface Pet {
-  id: number;
+  id: string;
   nome: string;
   especie: string;
   raca: string;
-  nascimento: string;
-  tutorId: number;
+  nascimento: string; // ou Date, se você for converter
+  tutorId: string;
 }

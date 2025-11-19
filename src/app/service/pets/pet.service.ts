@@ -15,7 +15,7 @@ export class PetService {
     return this.http.get<Pet[]>(this.apiUrl);
   }
 
-  buscarPorId(id: number): Observable<Pet> {
+  buscarPorId(id: string): Observable<Pet> {
     return this.http.get<Pet>(`${this.apiUrl}/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class PetService {
     return this.http.post<Pet>(this.apiUrl, pet);
   }
 
-  atualizar(id: number, pet: Pet): Observable<Pet> {
+  atualizar(id: string, pet: Pet): Observable<Pet> {
     return this.http.put<Pet>(`${this.apiUrl}/${id}`, pet);
   }
 
-  deletar(id: number): Observable<void> {
+  deletar(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

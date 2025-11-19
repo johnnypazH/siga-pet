@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-light py-3">
+      <h2 class="mb-0">{{ titulo }}</h2>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="salvar()">
+        <div class="row">
+          <!-- Pet -->
+          <div class="col-md-6 mb-3">
+            <label for="pet" class="form-label">Pet</label>
+            <select id="pet" name="pet" class="form-select" [(ngModel)]="agendamento.petid" required>
+              <option [ngValue]="undefined" disabled>Selecione um pet</option>
+              <option *ngFor="let pet of pets" [value]="pet.id">{{ pet.nome }}</option>
+            </select>
+          </div>
+
+          <!-- Serviço -->
+          <div class="col-md-6 mb-3">
+            <label for="servico" class="form-label">Serviço</label>
+            <select id="servico" name="servico" class="form-select" [(ngModel)]="agendamento.servicoId" required>
+              <option [ngValue]="undefined" disabled>Selecione um serviço</option>
+              <option *ngFor="let servico of servicos" [value]="servico.id">{{ servico.nome }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Data e Hora -->
+          <div class="col-md-6 mb-3">
+            <label for="data" class="form-label">Data e Hora</label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="data"
+              name="data"
+              [(ngModel)]="agendamento.data"
+              required>
+          </div>
+
+          <!-- Status -->
+          <div class="col-md-6 mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select id="status" name="status" class="form-select" [(ngModel)]="agendamento.status" required>
+              <option value="Agendado">Agendado</option>
+              <option value="Concluído">Concluído</option>
+              <option value="Cancelado">Cancelado</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Observações -->
+        <div class="mb-3">
+          <label for="observacoes" class="form-label">Observações</label>
+          <textarea
+            class="form-control"
+            id="observacoes"
+            name="observacoes"
+            rows="3"
+            [(ngModel)]="agendamento.observacoes"></textarea>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <a routerLink="/agenda" class="btn btn-secondary me-2">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

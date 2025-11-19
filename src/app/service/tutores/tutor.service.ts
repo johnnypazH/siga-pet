@@ -15,7 +15,7 @@ export class TutorService {
     return this.http.get<Tutor[]>(this.apiUrl);
   }
 
-  buscarPorId(id: number): Observable<Tutor> {
+  buscarPorId(id: string): Observable<Tutor> {
     return this.http.get<Tutor>(`${this.apiUrl}/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class TutorService {
     return this.http.post<Tutor>(this.apiUrl, tutor);
   }
 
-  atualizar(id: number, tutor: Tutor): Observable<Tutor> {
+  atualizar(id: string, tutor: Tutor): Observable<Tutor> {
     return this.http.put<Tutor>(`${this.apiUrl}/${id}`, tutor);
   }
 
-  deletar(id: number): Observable<void> {
+  deletar(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

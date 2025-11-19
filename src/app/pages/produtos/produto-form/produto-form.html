@@ -1,0 +1,80 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-light py-3">
+      <h2 class="mb-0">{{ titulo }}</h2>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="salvar()">
+        <!-- Nome do Produto -->
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome do Produto</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            name="nome"
+            [(ngModel)]="produto.nome"
+            required>
+        </div>
+
+        <div class="row">
+          <!-- Categoria -->
+          <div class="col-md-6 mb-3">
+            <label for="categoria" class="form-label">Categoria</label>
+            <input
+              type="text"
+              class="form-control"
+              id="categoria"
+              name="categoria"
+              [(ngModel)]="produto.categoria"
+              required>
+          </div>
+          <!-- Preço -->
+          <div class="col-md-6 mb-3">
+            <label for="preco" class="form-label">Preço</label>
+            <div class="input-group">
+              <span class="input-group-text">R$</span>
+              <input
+                type="number"
+                class="form-control"
+                id="preco"
+                name="preco"
+                [(ngModel)]="produto.preco"
+                required
+                step="0.01">
+            </div>
+          </div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição</label>
+          <textarea
+            class="form-control"
+            id="descricao"
+            name="descricao"
+            rows="3"
+            [(ngModel)]="produto.descricao"></textarea>
+        </div>
+
+        <!-- URL da Foto -->
+        <div class="mb-3">
+          <label for="fotoUrl" class="form-label">Nome do Arquivo da Imagem</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fotoUrl"
+            name="fotoUrl"
+            [(ngModel)]="produto.fotoUrl"
+            placeholder="Ex: 1712602790210_mini.jpg"
+            required>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <a routerLink="/produtos" class="btn btn-secondary me-2">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

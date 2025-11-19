@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-light py-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">Gerenciamento de Serviços</h2>
+        <div class="d-flex">
+          <div class="input-group me-2">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Buscar por nome..."
+              [value]="termoBusca()"
+              (input)="buscar($event)">
+          </div>
+          <a routerLink="/servicos/novo" class="btn btn-primary text-nowrap">
+            <i class="bi bi-plus-circle me-1"></i>
+            Novo Serviço
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" class="border-end">Nome</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Duração (min)</th>
+              <th scope="col">Status</th>
+              <th scope="col" class="text-end">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="servicosFiltrados().length === 0">
+              <td colspan="6" class="text-center py-4">Nenhum serviço encontrado.</td>
+            </tr>
+            <tr *ngFor="let servico of servicosFiltrados()">
+              <td class="border-end">{{ servico.nome }}</td>
+              <td>{{ servico.descricao }}</td>
+              <td>{{ servico.preco | currency:'BRL' }}</td>
+              <td>{{ servico.duracao }}</td>
+              <td>
+                <span class="badge" [ngClass]="servico.ativo ? 'text-bg-success' : 'text-bg-secondary'">
+                  {{ servico.ativo ? 'Ativo' : 'Inativo' }}
+                </span>
+              </td>
+              <td class="text-end">
+                <a routerLink="/servicos/editar/{{servico.id}}" class="btn btn-sm btn-outline-info me-2">Editar</a>
+                <button class="btn btn-sm btn-outline-danger" (click)="excluir(servico.id)">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

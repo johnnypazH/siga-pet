@@ -9,7 +9,12 @@
         <div class="d-flex">
           <!-- Campo de busca -->
           <div class="input-group me-2">
-            <input type="text" class="form-control" placeholder="Buscar por nome...">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Buscar por nome do pet ou tutor..."
+              [value]="termoBusca()"
+              (input)="buscar($event)">
           </div>
           <!-- Botão para novo pet -->
           <a routerLink="/pets/novo" class="btn btn-primary text-nowrap">
@@ -36,7 +41,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let pet of pets">
+            <tr *ngFor="let pet of petsFiltrados()">
               <th scope="row">{{ pet.id }}</th>
               <td>{{ pet.nome }}</td>
               <td>{{ pet.especie }}</td>

@@ -44,31 +44,89 @@
       "nascimento": "2025-08-13",
       "tutorId": "7d65"
     }
-
   ],
-  "prod":[{
-     "id": "prod01",
-     "nome": "Ração Premium para Cães",
-     "categoria": "Alimentação",
-     "preco": 129.9,
-     "descricao": "Pacote de 15kg de ração super premium para cães adultos de porte médio.",
-     "fotoUrl": "1712602790210_mini.jpg"
-    
-  },{
-     "id": "prod02",
-     "nome": "Arranhador para Gatos",
-     "categoria": "Acessórios",
-     "preco": 89.9,
-     "descricao": "Arranhador de sisal com 3 andares e bolinha de brinquedo.",
-     "fotoUrl": "1725977094714_mini.jpg"
-    
-  },{
-     "id": "prod03",
-     "nome": "Coleira com Guia",
-     "categoria": "Acessórios",
-     "preco": 45.5,
-     "descricao": "Conjunto de coleira e guia em nylon reforçado, cor vermelha.",
-     "fotoUrl": "1725977220500_mini.jpg"
-    
-  }]
+  "prod": [
+    {
+      "id": "prod01",
+      "nome": "Ração Premium para Cães",
+      "categoria": "Alimentação",
+      "preco": 129.9,
+      "descricao": "Pacote de 15kg de ração super premium para cães adultos de porte médio.",
+      "fotoUrl": "1712602790210_mini.jpg"
+    },
+    {
+      "id": "prod02",
+      "nome": "Raçao parra gatos",
+      "categoria": "Comida",
+      "preco": 89.9,
+      "descricao": "Raçao mister M faça seu gato sumir",
+      "fotoUrl": "1725977094714_mini.jpg"
+    },
+    {
+      "id": "prod03",
+      "nome": "otra raçao",
+      "categoria": "alimentaçao",
+      "preco": 10006666,
+      "descricao": "conjunto de bagulho refinado para gatos",
+      "fotoUrl": "1725977220500_mini.jpg"
+    },
+    {
+      "id": "a08c",
+      "nome": "emoticom felizq",
+      "categoria": "feliz feliz",
+      "preco": 1.99,
+      "descricao": "emotico feliz para ser feeliz",
+      "fotoUrl": "j.jpg"
+    }
+  ],
+  "servicos": [
+    {
+      "id": "serv01",
+      "nome": "Banho e Tosa Higiênica",
+      "preco": 75.5,
+      "descricao": "Banho completo com produtos hipoalergênicos e tosa das áreas íntimas.",
+      "duracao": 60,
+      "ativo": true
+    },
+    {
+      "id": "serv02",
+      "nome": "Consulta Veterinária",
+      "preco": 150,
+      "descricao": "Consulta de rotina com um de nossos veterinários.",
+      "duracao": 30,
+      "ativo": true
+    },
+    {
+      "id": "serv03",
+      "nome": "Aplicação de Vacina V10",
+      "preco": 90,
+      "descricao": "Aplicação da vacina polivalente V10 para cães.",
+      "duracao": 15,
+      "ativo": false
+    }
+  ],
+
+  "agendamentos": [
+    {
+      "id": "ag001",
+      "petid": "e888",
+      "servicoId": "serv01",
+      "data": "2024-08-10T10:00:00",
+      "status": "Agendado"
+    },
+    {
+      "id": "ag002",
+      "petid": "9876",
+      "servicoId": "serv02",
+      "data": "2024-08-10T11:30:00",
+      "status": "Concluído"
+    },
+    {
+      "id": "ag003",
+      "petid": "151f",
+      "servicoId": "serv01",
+      "data": "2024-08-11T14:00:00",
+      "status": "Cancelado"
+    }
+  ]
 }

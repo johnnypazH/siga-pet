@@ -9,7 +9,12 @@
         <div class="d-flex">
           <!-- Campo de busca -->
           <div class="input-group me-2">
-            <input type="text" class="form-control" [(ngModel)]="termoBusca" placeholder="Buscar por nome...">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Buscar por nome..."
+              [value]="termoBusca()"
+              (input)="buscar($event)">
           </div>
           <!-- Botão para novo tutor -->
           <a routerLink="/tutores/novo" class="btn btn-primary text-nowrap">
@@ -34,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let tutor of tutores | filtroTutor:termoBusca">
+            <tr *ngFor="let tutor of tutoresFiltrados()">
               <th scope="row">{{ tutor.id }}</th>
               <td>{{ tutor.nome }}</td>
               <td>{{ tutor.email }}</td>

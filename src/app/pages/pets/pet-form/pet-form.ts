@@ -33,14 +33,15 @@ export class PetFormComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isEdit = true;
-      this.petService.buscarPorId(+id).subscribe(pet => {
+      this.petService.buscarPorId(id).subscribe(pet => {
         this.pet = pet;
       });
     }
   }
 
   salvar(): void {
-    if (!this.pet.tutorId && this.pet.tutorId !== 0) {
+    // A verificação `!this.pet.tutorId` é suficiente para strings.
+    if (!this.pet.tutorId) {
       alert('Por favor, selecione um tutor.');
       return;
     }
