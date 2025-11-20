@@ -11,23 +11,23 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<Produto[]> {
+  findAll(): Observable<Produto[]> {
     return this.http.get<Produto[]>(this.apiUrl);
   }
 
-  buscarPorId(id: string): Observable<Produto> {
+  findById(id: string): Observable<Produto> {
     return this.http.get<Produto>(`${this.apiUrl}/${id}`);
   }
 
-  criar(produto: Omit<Produto, 'id'>): Observable<Produto> {
+  create(produto: Produto): Observable<Produto> {
     return this.http.post<Produto>(this.apiUrl, produto);
   }
 
-  atualizar(id: string, produto: Produto): Observable<Produto> {
-    return this.http.put<Produto>(`${this.apiUrl}/${id}`, produto);
+  update(produto: Produto): Observable<Produto> {
+    return this.http.put<Produto>(`${this.apiUrl}/${produto.id}`, produto);
   }
 
-  deletar(id: string): Observable<void> {
+  delete(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

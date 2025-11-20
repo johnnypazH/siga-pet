@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="mb-0">{{ isEdit ? 'Editar Fornecedor' : 'Novo Fornecedor' }}</h2>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="save()">
+        <div class="row g-3">
+          <!-- Nome -->
+          <div class="col-md-6">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" [(ngModel)]="fornecedor.nome" name="nome" required />
+          </div>
+
+          <!-- Contato -->
+          <div class="col-md-6">
+            <label for="contato" class="form-label">Pessoa de Contato</label>
+            <input type="text" class="form-control" id="contato" [(ngModel)]="fornecedor.contato" name="contato" />
+          </div>
+
+          <!-- Telefone -->
+          <div class="col-md-6">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input type="tel" class="form-control" id="telefone" [(ngModel)]="fornecedor.telefone" name="telefone" required />
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="fornecedor.email" name="email" required />
+          </div>
+
+          <!-- Endereço -->
+          <div class="col-12">
+            <label for="endereco" class="form-label">Endereço</label>
+            <input type="text" class="form-control" id="endereco" [(ngModel)]="fornecedor.endereco" name="endereco" />
+          </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="mt-4 d-flex justify-content-end">
+          <a routerLink="/fornecedores" class="btn btn-secondary me-2">
+            <i class="bi bi-x-circle me-2"></i>
+            Cancelar
+          </a>
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-check-circle me-2"></i>
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

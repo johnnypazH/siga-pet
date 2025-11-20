@@ -51,24 +51,27 @@
       "nome": "Ração Premium para Cães",
       "categoria": "Alimentação",
       "preco": 129.9,
-      "descricao": "Pacote de 15kg de ração super premium para cães adultos de porte médio.",
-      "fotoUrl": "1712602790210_mini.jpg"
+      "descricao": "Pacote de 15kg de ração super premium para cães adultos.",
+      "fotoUrl": "1712602790210_mini.jpg",
+      "fornecedorid": "forn01"
     },
     {
       "id": "prod02",
       "nome": "Raçao parra gatos",
       "categoria": "Comida",
       "preco": 89.9,
-      "descricao": "Raçao mister M faça seu gato sumir",
-      "fotoUrl": "1725977094714_mini.jpg"
+      "descricao": "Ração especial para gatos castrados.",
+      "fotoUrl": "1725977094714_mini.jpg",
+      "fornecedorid": "forn01"
     },
     {
       "id": "prod03",
-      "nome": "otra raçao",
-      "categoria": "alimentaçao",
-      "preco": 10006666,
-      "descricao": "conjunto de bagulho refinado para gatos",
-      "fotoUrl": "1725977220500_mini.jpg"
+      "nome": "Brinquedo de Corda",
+      "categoria": "Brinquedos",
+      "preco": 25.5,
+      "descricao": "Brinquedo de corda resistente para cães.",
+      "fotoUrl": "1725977220500_mini.jpg",
+      "fornecedorid": "forn02"
     },
     {
       "id": "a08c",
@@ -76,7 +79,8 @@
       "categoria": "feliz feliz",
       "preco": 1.99,
       "descricao": "emotico feliz para ser feeliz",
-      "fotoUrl": "j.jpg"
+      "fotoUrl": "j.jpg",
+      "fornecedorid": "forn02"
     }
   ],
   "servicos": [
@@ -127,6 +131,25 @@
       "servicoId": "serv01",
       "data": "2024-08-11T14:00:00",
       "status": "Cancelado"
+    }
+  ],
+
+  "fornecedores": [
+    {
+      "id": "forn01",
+      "nome": "Distribuidora de Rações XYZ",
+      "contato": "Carlos Silva",
+      "telefone": "11 98765-4321",
+      "email": "contato@racoesxyz.com",
+      "endereco": "Rua das Entregas, 123, São Paulo, SP"
+    },
+    {
+      "id": "forn02",
+      "nome": "Pet Toys Inc.",
+      "contato": "Ana Pereira",
+      "telefone": "21 91234-5678",
+      "email": "vendas@pettoys.com",
+      "endereco": "Avenida dos Brinquedos, 456, Rio de Janeiro, RJ"
     }
   ]
 }

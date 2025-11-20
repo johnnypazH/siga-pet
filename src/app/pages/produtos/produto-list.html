@@ -28,12 +28,13 @@
               <th scope="col">Nome</th>
               <th scope="col">Categoria</th>
               <th scope="col">Preço</th>
+              <th scope="col">Fornecedor</th>
               <th scope="col" class="text-end">Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngIf="produtosFiltrados().length === 0">
-              <td colspan="5" class="text-center py-4">Nenhum produto encontrado.</td>
+              <td colspan="6" class="text-center py-4">Nenhum produto encontrado.</td>
             </tr>
             <tr *ngFor="let produto of produtosFiltrados()">
               <td>
@@ -42,6 +43,7 @@
               <td>{{ produto.nome }}</td>
               <td>{{ produto.categoria }}</td>
               <td>{{ produto.preco | currency:'BRL' }}</td>
+              <td>{{ getFornecedorNome(produto.fornecedorid) }}</td>
               <td class="text-end">
                 <a routerLink="/produtos/editar/{{produto.id}}" class="btn btn-sm btn-outline-info me-2">Editar</a>
                 <button class="btn btn-sm btn-outline-danger" (click)="excluir(produto.id)">Excluir</button>

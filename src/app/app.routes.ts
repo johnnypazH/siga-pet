@@ -9,6 +9,9 @@ import { ServicoPetListComponent } from './pages/servicos-pet/servicos-pet';
 import { ServicoPetFormComponent } from './pages/servicos-pet/servicos-pet.form/servicos-pet.form';
 import { AgendaListComponent } from './pages/agenda-list/agenda-list';
 import { AgendaFormComponent } from './pages/agenda-form/agenda-form';
+import { ForncedorListComponent } from './pages/forncedor/forncedor-list/forncedor-list';
+import { ForncedorFormComponent } from './pages/forncedor/forncedor-form/forncedor-form';
+
 
 export const routes: Routes = [
   { path: 'tutores', component: TutorListComponent },
@@ -26,5 +29,8 @@ export const routes: Routes = [
   { path: 'agenda', component: AgendaListComponent },
   { path: 'agenda/novo', component: AgendaFormComponent },
   { path: 'agenda/editar/:id', component: AgendaFormComponent },
+  { path: 'fornecedores', component: ForncedorListComponent },
+  { path: 'fornecedores/novo', component: ForncedorFormComponent },
+  { path: 'fornecedores/editar/:id', component: ForncedorFormComponent },
   { path: '', redirectTo: 'tutores', pathMatch: 'full' },
 ];
