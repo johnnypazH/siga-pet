@@ -14,7 +14,7 @@ import { TutorService } from '../../../service/tutores/tutor.service';
 })
 export class TutorFormComponent implements OnInit {
   // Usar Partial<Tutor> torna todas as propriedades, incluindo 'id', opcionais.
-  tutor: Tutor = { id: '', nome: '', email: '', telefone: '' };
+  tutor: Tutor = { id: '', nome: '', cpf: '', dataNascimento: '', endereco: '', email: '', telefone: '' };
   isEdit: boolean = false;
 
   constructor(

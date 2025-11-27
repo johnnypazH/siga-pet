@@ -11,7 +11,8 @@ import { AgendaListComponent } from './pages/agenda-list/agenda-list';
 import { AgendaFormComponent } from './pages/agenda-form/agenda-form';
 import { ForncedorListComponent } from './pages/forncedor/forncedor-list/forncedor-list';
 import { ForncedorFormComponent } from './pages/forncedor/forncedor-form/forncedor-form';
-
+import { FuncionarioListComponent } from './pages/funcionarios/funcionario-list/funcionario-list';
+import { FuncionarioFormComponent } from './pages/funcionarios/funcionario-form/funcionario-form';
 
 export const routes: Routes = [
   { path: 'tutores', component: TutorListComponent },
@@ -32,5 +33,8 @@ export const routes: Routes = [
   { path: 'fornecedores', component: ForncedorListComponent },
   { path: 'fornecedores/novo', component: ForncedorFormComponent },
   { path: 'fornecedores/editar/:id', component: ForncedorFormComponent },
+  { path: 'funcionarios', component: FuncionarioListComponent },
+  { path: 'funcionarios/novo', component: FuncionarioFormComponent },
+  { path: 'funcionarios/editar/:id', component: FuncionarioFormComponent },
   { path: '', redirectTo: 'tutores', pathMatch: 'full' },
 ];

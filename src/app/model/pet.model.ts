@@ -5,4 +5,6 @@ export interface Pet {
   raca: string;
   nascimento: string; // ou Date, se você for converter
   tutorId: string;
+  prontuarioid: string;
+
 }

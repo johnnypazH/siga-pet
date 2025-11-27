@@ -2,19 +2,28 @@
   "tutores": [
     {
       "id": "39a4",
-      "nome": "johnny",
+      "nome": "Johnny Deep",
+      "cpf": "111.222.333-44",
+      "dataNascimento": "1985-01-10",
+      "endereco": "Rua das Palmeiras, 123",
       "email": "john@email.com",
       "telefone": "444444"
     },
     {
       "id": "c6a8",
-      "nome": "vitoria ss",
+      "nome": "Vitoria Secret",
+      "cpf": "222.333.444-55",
+      "dataNascimento": "1990-03-15",
+      "endereco": "Avenida dos Anjos, 456",
       "email": "vitoriass.@email.com",
       "telefone": "555555"
     },
     {
       "id": "7d65",
-      "nome": "teste3",
+      "nome": "Maria Teste",
+      "cpf": "333.444.555-66",
+      "dataNascimento": "1992-11-20",
+      "endereco": "Praça da Sé, 789",
       "email": "teste3@gmail.com",
       "telefone": "999999"
     }
@@ -53,7 +62,7 @@
       "preco": 129.9,
       "descricao": "Pacote de 15kg de ração super premium para cães adultos.",
       "fotoUrl": "1712602790210_mini.jpg",
-      "fornecedorid": "forn01"
+      "fornecedorId": "forn01"
     },
     {
       "id": "prod02",
@@ -62,7 +71,7 @@
       "preco": 89.9,
       "descricao": "Ração especial para gatos castrados.",
       "fotoUrl": "1725977094714_mini.jpg",
-      "fornecedorid": "forn01"
+      "fornecedorId": "forn01"
     },
     {
       "id": "prod03",
@@ -71,7 +80,7 @@
       "preco": 25.5,
       "descricao": "Brinquedo de corda resistente para cães.",
       "fotoUrl": "1725977220500_mini.jpg",
-      "fornecedorid": "forn02"
+      "fornecedorId": "forn02"
     },
     {
       "id": "a08c",
@@ -80,7 +89,7 @@
       "preco": 1.99,
       "descricao": "emotico feliz para ser feeliz",
       "fotoUrl": "j.jpg",
-      "fornecedorid": "forn02"
+      "fornecedorId": "forn02"
     }
   ],
   "servicos": [
@@ -113,21 +122,21 @@
   "agendamentos": [
     {
       "id": "ag001",
-      "petid": "e888",
+      "petId": "e888",
       "servicoId": "serv01",
       "data": "2024-08-10T10:00:00",
       "status": "Agendado"
     },
     {
       "id": "ag002",
-      "petid": "9876",
+      "petId": "9876",
       "servicoId": "serv02",
       "data": "2024-08-10T11:30:00",
       "status": "Concluído"
     },
     {
       "id": "ag003",
-      "petid": "151f",
+      "petId": "151f",
       "servicoId": "serv01",
       "data": "2024-08-11T14:00:00",
       "status": "Cancelado"
@@ -150,6 +159,33 @@
       "telefone": "21 91234-5678",
       "email": "vendas@pettoys.com",
       "endereco": "Avenida dos Brinquedos, 456, Rio de Janeiro, RJ"
+    }
+  ],
+
+  "funcionarios": [
+    {
+      "id": "func01",
+      "nome": "Carlos Alberto",
+      "cpf": "111.222.333-44",
+      "dataNascimento": "1990-05-15",
+      "endereco": "Rua das Flores, 123",
+      "email": "carlos.alberto@example.com",
+      "telefone": "11999998888",
+      "cargo": "Veterinário",
+      "salario": 7500,
+      "ativo": true
+    },
+    {
+      "id": "func02",
+      "nome": "Mariana Souza",
+      "cpf": "555.666.777-88",
+      "dataNascimento": "1995-09-20",
+      "endereco": "Avenida Principal, 456",
+      "email": "mariana.souza@example.com",
+      "telefone": "21988887777",
+      "cargo": "Tosadora",
+      "salario": 3200,
+      "ativo": false
     }
   ]
 }

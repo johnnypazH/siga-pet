@@ -51,6 +51,6 @@ export class ProdutoFormComponent implements OnInit {
   }
 
   private getEmptyProduto(): Produto {
-    return { id: '', nome: '', categoria: '', preco: 0, descricao: '', fornecedorid: '', fotoUrl: '' };
+    return { id: '', nome: '', categoria: '', preco: 0, descricao: '', fornecedorId: '', fotoUrl: '' };
   }
 }

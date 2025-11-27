@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 // 1. Defina suas customizações de variáveis do Bootstrap AQUI.
-$primary: #1abc9c;
+$custom-primary: #1abc9c;
 
 // 2. Importe os estilos do Bootstrap DEPOIS de definir as variáveis.
-@import "bootstrap/scss/bootstrap";
+@use 'bootstrap/scss/bootstrap' with ($primary: $custom-primary);
 
 // 3. (Opcional) Importe os ícones do Bootstrap.
-@import "bootstrap-icons/font/bootstrap-icons.css";
+@use "bootstrap-icons/font/bootstrap-icons.css";
 
 // 4. Adicione estilos globais para a aplicação.
 body {

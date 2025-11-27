@@ -1,50 +1,60 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ServicoPet } from '../../model/servico-pet.model';
 import { ServicoPetService } from '../../service/servico-pet/servico-pet';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-servico-pet-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, CurrencyPipe],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, CurrencyPipe],
   templateUrl: '../../../app/pages/servicos-pet/servicos-pet.html',
   styleUrl: '../../../app/pages/servicos-pet/servicos-pet.scss'
 })
 export class ServicoPetListComponent implements OnInit {
-  private servicos = signal<ServicoPet[]>([]);
-  termoBusca = signal<string>('');
+  servicos: ServicoPet[] = [];
+  filtroForm: FormGroup;
 
-  servicosFiltrados = computed(() => {
-    const servicos = this.servicos();
-    const termo = this.termoBusca().toLowerCase();
+  private servicoPetService = inject(ServicoPetService);
+  private fb = inject(FormBuilder);
 
-    if (!termo) {
-      return servicos;
-    }
-
-    return servicos.filter(servico =>
-      servico.nome.toLowerCase().includes(termo)
-    );
-  });
-
-  constructor(private servicoPetService: ServicoPetService) {}
-
-  ngOnInit(): void {
-    this.servicoPetService.listar().subscribe(data => this.servicos.set(data));
+  constructor() {
+    this.filtroForm = this.fb.group({
+      nome: [''],
+      ativo: ['todos']
+    });
   }
 
-  buscar(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.termoBusca.set(target.value);
+  ngOnInit(): void {
+    this.carregarServicos();
+
+    this.filtroForm.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(formValue => this.servicoPetService.listar(formValue))
+    ).subscribe(servicos => {
+      this.servicos = servicos;
+    });
+  }
+
+  carregarServicos(): void {
+    this.servicoPetService.listar(this.filtroForm.value).subscribe(data => {
+      this.servicos = data;
+    });
   }
 
   excluir(id: string): void {
     if (confirm('Deseja realmente excluir este serviço?')) {
       this.servicoPetService.deletar(id).subscribe(() => {
-        this.servicos.update(servicosAtuais => servicosAtuais.filter(s => s.id !== id));
+        // Recarrega a lista para refletir a exclusão
+        this.carregarServicos();
       });
     }
+  }
+
+  limparFiltros(): void {
+    this.filtroForm.reset({ nome: '', ativo: 'todos' });
   }
 }

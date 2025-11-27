@@ -48,7 +48,7 @@
           <!-- Fornecedor -->
           <div class="col-12 mb-3">
             <label for="fornecedor" class="form-label">Fornecedor</label>
-            <select class="form-select" id="fornecedor" [(ngModel)]="produto.fornecedorid" name="fornecedorid" required>
+            <select class="form-select" id="fornecedor" [(ngModel)]="produto.fornecedorId" name="fornecedorId" required>
               <option [ngValue]="''" disabled>Selecione um fornecedor</option>
               <option *ngFor="let f of fornecedores" [value]="f.id">
                 {{ f.nome }}

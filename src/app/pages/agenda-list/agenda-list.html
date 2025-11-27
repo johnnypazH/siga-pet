@@ -3,15 +3,23 @@
     <div class="card-header bg-light py-3">
       <div class="d-flex justify-content-between align-items-center">
         <h2 class="mb-0">Agenda de Serviços</h2>
-        <div class="d-flex">
-          <div class="input-group me-2">
+        <div class="d-flex align-items-center">
+          <form [formGroup]="filtroForm" class="d-flex me-2">
             <input
               type="text"
               class="form-control"
-              placeholder="Buscar por pet, serviço ou status..."
-              [value]="termoBusca()"
-              (input)="buscar($event)">
-          </div>
+              placeholder="Buscar por nome do pet..."
+              formControlName="petNome">
+            <select class="form-select ms-2" style="width: 150px;" formControlName="status">
+              <option value="todos">Todos Status</option>
+              <option value="Agendado">Agendado</option>
+              <option value="Concluído">Concluído</option>
+              <option value="Cancelado">Cancelado</option>
+            </select>
+            <button type="button" class="btn btn-secondary ms-2" (click)="limparFiltros()">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </form>
           <a routerLink="/agenda/novo" class="btn btn-primary text-nowrap">
             <i class="bi bi-plus-circle me-1"></i>
             Novo Agendamento
@@ -24,33 +32,29 @@
         <table class="table table-hover align-middle">
           <thead class="table-light">
             <tr>
+              <th scope="col">Data e Hora</th>
               <th scope="col">Pet</th>
               <th scope="col">Serviço</th>
-              <th scope="col">Data e Hora</th>
               <th scope="col">Status</th>
               <th scope="col" class="text-end">Ações</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngIf="agendamentosFiltrados().length === 0">
+            <tr *ngIf="agendamentos.length === 0">
               <td colspan="5" class="text-center py-4">Nenhum agendamento encontrado.</td>
             </tr>
-            <tr *ngFor="let agenda of agendamentosFiltrados()">
-              <td>{{ agenda.pet?.nome }}</td>
-              <td>{{ agenda.servico?.nome }}</td>
-              <td>{{ agenda.data | date:'dd/MM/yyyy HH:mm' }}</td>
+            <tr *ngFor="let ag of agendamentos">
+              <td>{{ ag.data | date:'dd/MM/yyyy HH:mm' }}</td>
+              <td>{{ ag.pet?.nome || 'Pet não encontrado' }}</td>
+              <td>{{ ag.servico?.nome || 'Serviço não encontrado' }}</td>
               <td>
-                <span class="badge" 
-                  [class.text-bg-primary]="agenda.status === 'Agendado'"
-                  [class.text-bg-success]="agenda.status === 'Concluído'"
-                  [class.text-bg-danger]="agenda.status === 'Cancelado'"
-                >
-                  {{ agenda.status }}
+                <span class="badge" [ngClass]="{'text-bg-primary': ag.status === 'Agendado', 'text-bg-success': ag.status === 'Concluído', 'text-bg-danger': ag.status === 'Cancelado'}">
+                  {{ ag.status }}
                 </span>
               </td>
               <td class="text-end">
-                <a routerLink="/agenda/editar/{{agenda.id}}" class="btn btn-sm btn-outline-info me-2">Editar</a>
-                <button class="btn btn-sm btn-outline-danger" (click)="excluir(agenda.id)">Excluir</button>
+                <a routerLink="/agenda/editar/{{ag.id}}" class="btn btn-sm btn-outline-info me-2">Editar</a>
+                <button class="btn btn-sm btn-outline-danger" (click)="excluir(ag.id)">Excluir</button>
               </td>
             </tr>
           </tbody>

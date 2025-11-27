@@ -1,4 +1,4 @@
-export interface Tutor {
+export interface Funcionario {
   id: string;
   nome: string;
   cpf: string;
@@ -6,4 +6,7 @@ export interface Tutor {
   endereco: string;
   email: string;
   telefone: string;
+  cargo: string;
+  salario: number;
+  ativo: boolean;
 }

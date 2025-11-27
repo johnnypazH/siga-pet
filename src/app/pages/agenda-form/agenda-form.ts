@@ -17,7 +17,13 @@ import { ServicoPetService } from '../../service/servico-pet/servico-pet';
   styleUrl: './agenda-form.scss'
 })
 export class AgendaFormComponent implements OnInit {
-  agendamento: Partial<Agenda> = { status: 'Agendado' };
+  agendamento: Partial<Agenda> = {
+    petId: undefined,
+    servicoId: undefined,
+    data: '',
+    status: 'Agendado',
+    observacoes: ''
+  };
   isEdit = false;
   titulo = 'Novo Agendamento';
   pets: Pet[] = [];

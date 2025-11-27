@@ -4,6 +4,6 @@ export interface Produto {
   categoria: string;
   preco: number;
   descricao: string;
-  fornecedorid: string;
+  fornecedorId: string;
   fotoUrl: string;
 }

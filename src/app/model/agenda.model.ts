@@ -1,9 +1,14 @@
+import { Pet } from './pet.model';
+import { ServicoPet } from './servico-pet.model';
+
 export interface Agenda {
   id: string;
-  petid: string;
-  data: string; // ou Date, se você for converter
+  petId: string;
   servicoId: string;
-  status: 'Agendado' | 'Concluído' | 'Cancelado';
-  observacoes: string;
-
+  data: string;
+  status: string;
+  observacoes?: string;
+  // Propriedades opcionais que serão preenchidas pelo _expand da API
+  pet?: Pet;
+  servico?: ServicoPet;
 }

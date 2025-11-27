@@ -3,15 +3,22 @@
     <div class="card-header bg-light py-3">
       <div class="d-flex justify-content-between align-items-center">
         <h2 class="mb-0">Gerenciamento de Serviços</h2>
-        <div class="d-flex">
-          <div class="input-group me-2">
+        <div class="d-flex align-items-center">
+          <form [formGroup]="filtroForm" class="d-flex me-2">
             <input
               type="text"
               class="form-control"
               placeholder="Buscar por nome..."
-              [value]="termoBusca()"
-              (input)="buscar($event)">
-          </div>
+              formControlName="nome">
+            <select class="form-select ms-2" style="width: 120px;" formControlName="ativo">
+              <option value="todos">Todos</option>
+              <option value="true">Ativo</option>
+              <option value="false">Inativo</option>
+            </select>
+            <button type="button" class="btn btn-secondary ms-2" (click)="limparFiltros()">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </form>
           <a routerLink="/servicos/novo" class="btn btn-primary text-nowrap">
             <i class="bi bi-plus-circle me-1"></i>
             Novo Serviço
@@ -33,10 +40,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngIf="servicosFiltrados().length === 0">
+            <tr *ngIf="servicos.length === 0">
               <td colspan="6" class="text-center py-4">Nenhum serviço encontrado.</td>
             </tr>
-            <tr *ngFor="let servico of servicosFiltrados()">
+            <tr *ngFor="let servico of servicos">
               <td class="border-end">{{ servico.nome }}</td>
               <td>{{ servico.descricao }}</td>
               <td>{{ servico.preco | currency:'BRL' }}</td>

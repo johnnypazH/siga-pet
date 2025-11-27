@@ -43,7 +43,7 @@
               <td>{{ produto.nome }}</td>
               <td>{{ produto.categoria }}</td>
               <td>{{ produto.preco | currency:'BRL' }}</td>
-              <td>{{ getFornecedorNome(produto.fornecedorid) }}</td>
+              <td>{{ getFornecedorNome(produto.fornecedorId) }}</td>
               <td class="text-end">
                 <a routerLink="/produtos/editar/{{produto.id}}" class="btn btn-sm btn-outline-info me-2">Editar</a>
                 <button class="btn btn-sm btn-outline-danger" (click)="excluir(produto.id)">Excluir</button>

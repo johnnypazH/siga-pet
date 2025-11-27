@@ -9,7 +9,7 @@
           <!-- Pet -->
           <div class="col-md-6 mb-3">
             <label for="pet" class="form-label">Pet</label>
-            <select id="pet" name="pet" class="form-select" [(ngModel)]="agendamento.petid" required>
+            <select id="pet" name="petId" class="form-select" [(ngModel)]="agendamento.petId" required>
               <option [ngValue]="undefined" disabled>Selecione um pet</option>
               <option *ngFor="let pet of pets" [value]="pet.id">{{ pet.nome }}</option>
             </select>

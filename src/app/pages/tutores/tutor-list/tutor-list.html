@@ -33,6 +33,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nome</th>
+              <th scope="col">CPF</th>
               <th scope="col">E-mail</th>
               <th scope="col">Telefone</th>
               <th scope="col" class="text-end">Ações</th>
@@ -42,6 +43,7 @@
             <tr *ngFor="let tutor of tutoresFiltrados()">
               <th scope="row">{{ tutor.id }}</th>
               <td>{{ tutor.nome }}</td>
+              <td>{{ tutor.cpf }}</td>
               <td>{{ tutor.email }}</td>
               <td>{{ tutor.telefone }}</td>
               <td class="text-end">

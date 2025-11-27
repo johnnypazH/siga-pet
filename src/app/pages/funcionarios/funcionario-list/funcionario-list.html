@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Funcionários</h2>
+    <a routerLink="/funcionarios/novo" class="btn btn-primary">
+      <i class="bi bi-plus-lg"></i> Novo Funcionário
+    </a>
+  </div>
+
+  <form [formGroup]="filtroForm" class="card card-body mb-4">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Buscar por nome...">
+      </div>
+      <div class="col-md-4">
+        <label for="cargo" class="form-label">Cargo</label>
+        <input type="text" id="cargo" class="form-control" formControlName="cargo" placeholder="Buscar por cargo...">
+      </div>
+      <div class="col-md-3">
+        <label for="ativo" class="form-label">Status</label>
+        <select id="ativo" class="form-select" formControlName="ativo">
+          <option value="todos">Todos</option>
+          <option value="true">Ativo</option>
+          <option value="false">Inativo</option>
+        </select>
+      </div>
+      <div class="col-md-1 d-flex align-items-end">
+        <button type="button" class="btn btn-secondary w-100" (click)="limparFiltros()">Limpar</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Nome</th>
+          <th>Cargo</th>
+          <th>Telefone</th>
+          <th>Status</th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let funcionario of funcionarios">
+          <td>{{ funcionario.nome }}</td>
+          <td>{{ funcionario.cargo }}</td>
+          <td>{{ funcionario.telefone }}</td>
+          <td>
+            <span class="badge" [ngClass]="funcionario.ativo ? 'bg-success' : 'bg-danger'">
+              {{ funcionario.ativo ? 'Ativo' : 'Inativo' }}
+            </span>
+          </td>
+          <td class="text-center">
+            <button (click)="editar(funcionario.id)" class="btn btn-sm btn-outline-primary me-2" title="Editar">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button (click)="excluir(funcionario.id)" class="btn btn-sm btn-outline-danger" title="Excluir">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="funcionarios.length === 0">
+          <td colspan="5" class="text-center">Nenhum funcionário encontrado.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
