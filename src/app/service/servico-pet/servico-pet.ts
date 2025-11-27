@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { ServicoPet } from '../../model/servico-pet.model';
 
 @Injectable({
@@ -11,8 +11,19 @@ export class ServicoPetService {
 
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<ServicoPet[]> {
-    return this.http.get<ServicoPet[]>(this.apiUrl);
+  listar(filtros?: { nome?: string; ativo?: string }): Observable<ServicoPet[]> {
+    let params = new HttpParams();
+    if (filtros) {
+      if (filtros.nome) {
+        // Usa 'nome_like' para busca parcial no nome
+        params = params.append('nome_like', filtros.nome);
+      }
+      if (filtros.ativo && filtros.ativo !== 'todos') {
+        // Filtra por status 'ativo' (true/false)
+        params = params.append('ativo', filtros.ativo === 'true');
+      }
+    }
+    return this.http.get<ServicoPet[]>(this.apiUrl, { params });
   }
 
   buscarPorId(id: string): Observable<ServicoPet> {

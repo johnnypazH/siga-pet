@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 import { Agenda } from '../../model/agenda.model';
 
 @Injectable({
@@ -11,8 +11,25 @@ export class AgendaService {
 
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<Agenda[]> {
-    return this.http.get<Agenda[]>(this.apiUrl);
+  listar(filtros?: { petNome?: string; status?: string }): Observable<Agenda[]> {
+    // Sempre expande para trazer os dados do pet e do serviço junto com o agendamento.
+    let params = new HttpParams().append('_expand', 'pet').append('_expand', 'servico');
+    
+    // A busca por status pode ser feita diretamente na API
+    if (filtros?.status && filtros.status !== 'todos') {
+      params = params.append('status', filtros.status);
+    }
+
+    return this.http.get<Agenda[]>(this.apiUrl, { params }).pipe(
+      // O filtro por nome do pet é feito no lado do cliente (Angular)
+      map(agendamentos => {
+        if (!filtros?.petNome) {
+          return agendamentos; // Se não há filtro de nome, retorna tudo
+        }
+        // Filtra os agendamentos cujo pet (se existir) tenha o nome que corresponde ao filtro
+        return agendamentos.filter(ag => ag.pet?.nome.toLowerCase().includes(filtros.petNome!.toLowerCase()));
+      })
+    );
   }
 
   buscarPorId(id: string): Observable<Agenda> {
