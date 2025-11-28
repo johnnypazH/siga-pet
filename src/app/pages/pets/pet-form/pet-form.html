@@ -14,7 +14,10 @@
         <!-- Campo Espécie -->
         <div class="mb-3">
           <label for="especie" class="form-label">Espécie</label>
-          <input type="text" id="especie" [(ngModel)]="pet.especie" name="especie" class="form-control" required>
+          <select id="especie" [(ngModel)]="pet.especieId" name="especieId" class="form-select" required>
+            <option [ngValue]="undefined" disabled>Selecione uma espécie</option>
+            <option *ngFor="let especie of especies" [value]="especie.id">{{ especie.nome }}</option>
+          </select>
         </div>
 
         <!-- Campo Raça -->
@@ -27,6 +30,29 @@
         <div class="mb-3">
           <label for="nascimento" class="form-label">Nascimento</label>
           <input type="date" id="nascimento" [(ngModel)]="pet.nascimento" name="nascimento" class="form-control">
+        </div>
+
+        <!-- Campos Peso e Sexo na mesma linha -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="peso" class="form-label">Peso (kg)</label>
+            <input type="number" id="peso" [(ngModel)]="pet.peso" name="peso" class="form-control" placeholder="Ex: 5.2">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="sexo" class="form-label">Sexo</label>
+            <select id="sexo" [(ngModel)]="pet.sexo" name="sexo" class="form-select">
+              <option [ngValue]="undefined" disabled>Selecione o sexo</option>
+              <option value="Macho">Macho</option>
+              <option value="Fêmea">Fêmea</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Campo Observações -->
+        <div class="mb-3">
+          <label for="observacoes" class="form-label">Observações</label>
+          <textarea id="observacoes" [(ngModel)]="pet.observacoes" name="observacoes" class="form-control" rows="3"
+            placeholder="Alergias, comportamento, cuidados especiais..."></textarea>
         </div>
 
         <!-- Campo Tutor (Select) -->

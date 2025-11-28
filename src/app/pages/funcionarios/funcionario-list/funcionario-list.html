@@ -42,7 +42,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let funcionario of funcionarios">
+        <tr *ngFor="let funcionario of funcionarios()">
           <td>{{ funcionario.nome }}</td>
           <td>{{ funcionario.cargo }}</td>
           <td>{{ funcionario.telefone }}</td>
@@ -60,11 +60,10 @@
             </button>
           </td>
         </tr>
-        <tr *ngIf="funcionarios.length === 0">
+        <tr *ngIf="funcionarios().length === 0">
           <td colspan="5" class="text-center">Nenhum funcionário encontrado.</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-

@@ -5,12 +5,15 @@ import { Pet } from '../../../model/pet.model';
 import { PetService } from '../../../service/pets/pet.service';
 import { Tutor } from '../../../model/tutor.model';
 import { TutorService } from '../../../service/tutores/tutor.service';
+import { Especie } from '../../../model/especie.model';
+import { EspecieService } from '../../../service/especie/especie.service';
 import { forkJoin } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
 // Interface para combinar dados de Pet e Tutor
 interface PetComTutor extends Pet {
   tutor?: Tutor;
+  especie?: Especie;
 }
 
 @Component({
@@ -40,7 +43,8 @@ export class PetListComponent implements OnInit {
 
   constructor(
     private petService: PetService,
-    private tutorService: TutorService
+    private tutorService: TutorService,
+    private especieService: EspecieService
   ) {}
 
   ngOnInit(): void {
@@ -48,18 +52,21 @@ export class PetListComponent implements OnInit {
   }
 
   carregarDados(): void {
-    // Usamos forkJoin para buscar pets e tutores em paralelo
+    // Usamos forkJoin para buscar pets, tutores e espécies em paralelo
     forkJoin({
       pets: this.petService.listar(),
-      tutores: this.tutorService.listar()
-    }).subscribe(({ pets, tutores }) => {
+      tutores: this.tutorService.listar(),
+      especies: this.especieService.listar()
+    }).subscribe(({ pets, tutores, especies }) => {
       // Mapeia os tutores por ID para uma busca rápida
       const tutoresMap = new Map(tutores.map(t => [t.id, t]));
+      const especiesMap = new Map(especies.map(e => [e.id, e]));
 
       // Combina os dados de pet com os dados do tutor correspondente
       const petsComTutor: PetComTutor[] = pets.map(pet => ({
         ...pet,
-        tutor: tutoresMap.get(pet.tutorId)
+        tutor: tutoresMap.get(pet.tutorId),
+        especie: especiesMap.get(pet.especieId)
       }));
 
       this.pets.set(petsComTutor);

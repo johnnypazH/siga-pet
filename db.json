@@ -32,26 +32,35 @@
     {
       "id": "e888",
       "nome": "belina",
-      "especie": "gato",
+      "especieId": "esp02",
       "raca": "preto",
-      "nascimento": "2025-10-13",
-      "tutorId": "39a4"
+      "nascimento": "2022-10-13",
+      "tutorId": "39a4",
+      "peso": 4.5,
+      "sexo": "Fêmea",
+      "observacoes": "Gata castrada e muito dócil."
     },
     {
       "id": "9876",
       "nome": "REX",
-      "especie": "cao",
+      "especieId": "esp01",
       "raca": "azul",
-      "nascimento": "2025-10-01",
-      "tutorId": "c6a8"
+      "nascimento": "2021-10-01",
+      "tutorId": "c6a8",
+      "peso": 12.3,
+      "sexo": "Macho",
+      "observacoes": "Adora brinquedos de corda."
     },
     {
       "id": "151f",
       "nome": "bingo",
-      "especie": "cao",
+      "especieId": "esp01",
       "raca": "rosa",
-      "nascimento": "2025-08-13",
-      "tutorId": "7d65"
+      "nascimento": "2023-08-13",
+      "tutorId": "7d65",
+      "peso": 8.1,
+      "sexo": "Macho",
+      "observacoes": ""
     }
   ],
   "prod": [
@@ -118,19 +127,20 @@
       "ativo": false
     }
   ],
-
   "agendamentos": [
     {
       "id": "ag001",
       "petId": "e888",
       "servicoId": "serv01",
-      "data": "2024-08-10T10:00:00",
+      "funcionarioId": "func03",
+      "data": "2024-08-10T12:02",
       "status": "Agendado"
     },
     {
       "id": "ag002",
       "petId": "9876",
       "servicoId": "serv02",
+      "funcionarioId": "func04",
       "data": "2024-08-10T11:30:00",
       "status": "Concluído"
     },
@@ -138,11 +148,29 @@
       "id": "ag003",
       "petId": "151f",
       "servicoId": "serv01",
+      "funcionarioId": "func02",
       "data": "2024-08-11T14:00:00",
       "status": "Cancelado"
+    },
+    {
+      "id": "945b",
+      "petId": "9876",
+      "servicoId": "serv01",
+      "funcionarioId": "func03",
+      "data": "2024-08-10T12:02",
+      "status": "Agendado",
+      "observacoes": "lava oreia"
+    },
+    {
+      "id": "b9d3",
+      "petId": "e888",
+      "servicoId": "serv01",
+      "funcionarioId": "func03",
+      "data": "2024-08-10T13:02",
+      "status": "Agendado",
+      "observacoes": "asas"
     }
   ],
-
   "fornecedores": [
     {
       "id": "forn01",
@@ -161,7 +189,6 @@
       "endereco": "Avenida dos Brinquedos, 456, Rio de Janeiro, RJ"
     }
   ],
-
   "funcionarios": [
     {
       "id": "func01",
@@ -173,7 +200,7 @@
       "telefone": "11999998888",
       "cargo": "Veterinário",
       "salario": 7500,
-      "ativo": true
+      "ativo": false
     },
     {
       "id": "func02",
@@ -186,6 +213,84 @@
       "cargo": "Tosadora",
       "salario": 3200,
       "ativo": false
+    },
+    {
+      "id": "func03",
+      "nome": "Ana Paula",
+      "cpf": "222.333.444-55",
+      "dataNascimento": "1992-08-25",
+      "endereco": "Rua dos Pássaros, 789",
+      "email": "ana.paula@example.com",
+      "telefone": "31977776666",
+      "cargo": "Recepcionista",
+      "salario": 2500,
+      "ativo": true
+    },
+    {
+      "id": "func04",
+      "nome": "Ricardo Gomes",
+      "cpf": "444.555.666-77",
+      "dataNascimento": "1988-03-10",
+      "endereco": "Avenida das Árvores, 101",
+      "email": "ricardo.gomes@example.com",
+      "telefone": "41966665555",
+      "cargo": "Veterinário",
+      "salario": 8000,
+      "ativo": true
+    },
+    {
+      "id": "func05",
+      "nome": "Fernanda Lima",
+      "cpf": "888.999.000-11",
+      "dataNascimento": "1998-12-01",
+      "endereco": "Praça Central, 202",
+      "email": "fernanda.lima@example.com",
+      "telefone": "51955554444",
+      "cargo": "Estagiária",
+      "salario": 1200,
+      "ativo": true
+    }
+  ],
+  "especies": [
+    {
+      "id": "esp01",
+      "nome": "Cão"
+    },
+    {
+      "id": "esp02",
+      "nome": "Gato"
+    },
+    {
+      "id": "esp03",
+      "nome": "Pássaro"
+    },
+    {
+      "id": "esp04",
+      "nome": "Peixe"
+    },
+    {
+      "id": "esp05",
+      "nome": "Roedor"
+    }
+  ],
+  "prontuarios": [
+    {
+      "id": "pront001",
+      "petId": "e888",
+      "data": "2024-05-10T14:00:00",
+      "diagnostico": "Alergia a pulgas",
+      "tratamento": "Aplicação de anti-pulgas e medicação oral por 7 dias.",
+      "observacoes": "Pet apresentou coceira intensa na região do dorso.",
+      "funcionarioId": "func04"
+    },
+    {
+      "id": "pront002",
+      "petId": "9876",
+      "data": "2024-06-20T09:30:00",
+      "diagnostico": "Check-up anual e vacinação",
+      "tratamento": "Aplicação de vacina V10 (reforço). Exames de sangue normais.",
+      "observacoes": "Cão saudável, peso ideal.",
+      "funcionarioId": "func01"
     }
   ]
 }

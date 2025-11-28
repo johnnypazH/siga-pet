@@ -1,9 +1,12 @@
+import { Funcionario } from "./funcionario.model";
+
 export interface Prontuario {
   id: string;
-  petid: string;
+  petId: string;
   data: string; // ou Date, se você for converter
   diagnostico: string;
   tratamento: string;
   observacoes: string;
-  funcionarioid: string;
+  funcionarioId: string;
+  funcionario?: Funcionario; // Propriedade opcional para o objeto expandido
 }

@@ -26,6 +26,15 @@
         </div>
 
         <div class="row">
+          <!-- Funcionário -->
+          <div class="col-md-6 mb-3">
+            <label for="funcionario" class="form-label">Funcionário</label>
+            <select id="funcionario" name="funcionarioId" class="form-select" [(ngModel)]="agendamento.funcionarioId" required>
+              <option [ngValue]="undefined" disabled>Selecione um funcionário</option>
+              <option *ngFor="let func of funcionariosAtivos()" [value]="func.id">{{ func.nome }}</option>
+            </select>
+          </div>
+
           <!-- Data e Hora -->
           <div class="col-md-6 mb-3">
             <label for="data" class="form-label">Data e Hora</label>
@@ -61,7 +70,7 @@
         </div>
 
         <div class="d-flex justify-content-end mt-4">
-          <a routerLink="/agenda" class="btn btn-secondary me-2">Cancelar</a>
+          <a routerLink="/agendas" class="btn btn-secondary me-2">Cancelar</a>
           <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
       </form>

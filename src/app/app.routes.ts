@@ -13,6 +13,8 @@ import { ForncedorListComponent } from './pages/forncedor/forncedor-list/fornced
 import { ForncedorFormComponent } from './pages/forncedor/forncedor-form/forncedor-form';
 import { FuncionarioListComponent } from './pages/funcionarios/funcionario-list/funcionario-list';
 import { FuncionarioFormComponent } from './pages/funcionarios/funcionario-form/funcionario-form';
+import { AgendaInfoComponent } from './pages/agenda-list/agenda-info';
+import { PetInfo } from './pages/pets/pet-info/pet-info';
 
 export const routes: Routes = [
   { path: 'tutores', component: TutorListComponent },
@@ -21,15 +23,17 @@ export const routes: Routes = [
   { path: 'pets', component: PetListComponent },
   { path: 'pets/novo', component: PetFormComponent },
   { path: 'pets/editar/:id', component: PetFormComponent },
+  { path: 'pets/info/:id', component: PetInfo },
   { path: 'produtos', component: ProdutoListComponent },
   { path: 'produtos/novo', component: ProdutoFormComponent },
   { path: 'produtos/editar/:id', component: ProdutoFormComponent },
   { path: 'servicos', component: ServicoPetListComponent },
   { path: 'servicos/novo', component: ServicoPetFormComponent },
   { path: 'servicos/editar/:id', component: ServicoPetFormComponent },
-  { path: 'agenda', component: AgendaListComponent },
-  { path: 'agenda/novo', component: AgendaFormComponent },
-  { path: 'agenda/editar/:id', component: AgendaFormComponent },
+  { path: 'agendas', component: AgendaListComponent },
+  { path: 'agendas/novo', component: AgendaFormComponent },
+  { path: 'agendas/editar/:id', component: AgendaFormComponent },
+  { path: 'agendas/info/:id', component: AgendaInfoComponent }, 
   { path: 'fornecedores', component: ForncedorListComponent },
   { path: 'fornecedores/novo', component: ForncedorFormComponent },
   { path: 'fornecedores/editar/:id', component: ForncedorFormComponent },

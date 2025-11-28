@@ -6,6 +6,8 @@ import { Pet } from '../../../model/pet.model';
 import { PetService } from '../../../service/pets/pet.service';
 import { Tutor } from './../../../model/tutor.model';
 import { TutorService } from '../../../service/tutores/tutor.service';
+import { Especie } from '../../../model/especie.model';
+import { EspecieService } from '../../../service/especie/especie.service';
 
 @Component({
   selector: 'app-pet-form',
@@ -16,19 +18,22 @@ import { TutorService } from '../../../service/tutores/tutor.service';
 })
 export class PetFormComponent implements OnInit {
   // Usar Partial<Pet> torna todas as propriedades, incluindo 'id', opcionais.
-  pet: Partial<Pet> = { nome: '', especie: '', raca: '', nascimento: '', tutorId: undefined };
+  pet: Partial<Pet> = { nome: '', especieId: undefined, raca: '', nascimento: '', peso: undefined, sexo: undefined, observacoes: '', tutorId: undefined };
   tutores: Tutor[] = [];
+  especies: Especie[] = [];
   isEdit: boolean = false;
 
   constructor(
     private petService: PetService,
     private tutorService: TutorService,
+    private especieService: EspecieService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.tutorService.listar().subscribe(tutores => this.tutores = tutores);
+    this.especieService.listar().subscribe(especies => this.especies = especies);
 
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {

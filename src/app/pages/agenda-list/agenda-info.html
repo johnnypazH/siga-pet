@@ -1,0 +1,54 @@
+<div class="container mt-4" *ngIf="agendamento$ | async as agendamento; else loading">
+  <div class="card shadow-sm">
+    <div class="card-header bg-light py-3 d-flex justify-content-between align-items-center">
+      <h2 class="mb-0">
+        <i class="bi bi-calendar-check-fill me-2"></i>
+        Detalhes do Agendamento
+      </h2>
+      <a routerLink="/agendas" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar para a lista
+      </a>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <!-- Coluna Pet e Tutor -->
+        <div class="col-md-6">
+          <h4>Pet</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Nome:</strong> {{ agendamento.pet.nome }}</li>
+            <li class="list-group-item"><strong>Espécie:</strong> {{ agendamento.pet.especie.nome }}</li>
+            <li class="list-group-item"><strong>Tutor:</strong> {{ agendamento.pet.tutor.nome }}</li>
+          </ul>
+        </div>
+
+        <!-- Coluna Serviço e Status -->
+        <div class="col-md-6">
+          <h4>Serviço</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Nome:</strong> {{ agendamento.servico.nome }}</li>
+            <li class="list-group-item"><strong>Preço:</strong> {{ agendamento.servico.preco | currency:'BRL' }}</li>
+            <li class="list-group-item"><strong>Duração:</strong> {{ agendamento.servico.duracao }} minutos</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <h4>Detalhes do Agendamento</h4>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Data e Hora:</strong> {{ agendamento.data | date:'full' }}</li>
+        <li class="list-group-item"><strong>Funcionário:</strong> {{ agendamento.funcionario.nome }}</li>
+        <li class="list-group-item"><strong>Status:</strong>
+          <span class="badge ms-2" [ngClass]="{'bg-primary': agendamento.status === 'Agendado', 'bg-success': agendamento.status === 'Concluído', 'bg-danger': agendamento.status === 'Cancelado'}">
+            {{ agendamento.status }}
+          </span>
+        </li>
+        <li class="list-group-item" *ngIf="agendamento.observacoes"><strong>Observações:</strong> {{ agendamento.observacoes }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p class="text-center mt-5">Carregando detalhes do agendamento...</p>
+</ng-template>

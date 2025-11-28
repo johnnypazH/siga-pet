@@ -35,18 +35,20 @@
               <th scope="col">Data e Hora</th>
               <th scope="col">Pet</th>
               <th scope="col">Serviço</th>
+              <th scope="col">Funcionário</th>
               <th scope="col">Status</th>
               <th scope="col" class="text-end">Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngIf="agendamentos.length === 0">
-              <td colspan="5" class="text-center py-4">Nenhum agendamento encontrado.</td>
+              <td colspan="6" class="text-center py-4">Nenhum agendamento encontrado.</td>
             </tr>
             <tr *ngFor="let ag of agendamentos">
               <td>{{ ag.data | date:'dd/MM/yyyy HH:mm' }}</td>
               <td>{{ ag.pet?.nome || 'Pet não encontrado' }}</td>
               <td>{{ ag.servico?.nome || 'Serviço não encontrado' }}</td>
+              <td>{{ ag.funcionario?.nome || 'Não informado' }}</td>
               <td>
                 <span class="badge" [ngClass]="{'text-bg-primary': ag.status === 'Agendado', 'text-bg-success': ag.status === 'Concluído', 'text-bg-danger': ag.status === 'Cancelado'}">
                   {{ ag.status }}

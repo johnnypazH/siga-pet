@@ -44,11 +44,12 @@
             <tr *ngFor="let pet of petsFiltrados()">
               <th scope="row">{{ pet.id }}</th>
               <td>{{ pet.nome }}</td>
-              <td>{{ pet.especie }}</td>
+              <td>{{ pet.especie?.nome }}</td>
               <td>{{ pet.raca }}</td>
               <td>{{ pet.nascimento | date:'dd/MM/yyyy' }}</td>
               <td>{{ pet.tutor?.nome }}</td>
-              <td class="text-end">
+              <td class="text-end text-nowrap">
+                <a routerLink="/pets/info/{{pet.id}}" class="btn btn-sm btn-outline-success me-2">Detalhes</a>
                 <a routerLink="/pets/editar/{{pet.id}}" class="btn btn-sm btn-outline-info me-2">Editar</a>
                 <button class="btn btn-sm btn-outline-danger" (click)="excluir(pet.id)">Excluir</button>
               </td>
