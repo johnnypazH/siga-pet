@@ -15,6 +15,7 @@ import { FuncionarioListComponent } from './pages/funcionarios/funcionario-list/
 import { FuncionarioFormComponent } from './pages/funcionarios/funcionario-form/funcionario-form';
 import { AgendaInfoComponent } from './pages/agenda-list/agenda-info';
 import { PetInfo } from './pages/pets/pet-info/pet-info';
+import { CategoriaProdutoComponent } from './pages/produtos/categoria.produto/categoria.produto';
 
 export const routes: Routes = [
   { path: 'tutores', component: TutorListComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
   { path: 'produtos', component: ProdutoListComponent },
   { path: 'produtos/novo', component: ProdutoFormComponent },
   { path: 'produtos/editar/:id', component: ProdutoFormComponent },
+  { path: 'produtos/categorias/novo', component: CategoriaProdutoComponent },
   { path: 'servicos', component: ServicoPetListComponent },
   { path: 'servicos/novo', component: ServicoPetFormComponent },
   { path: 'servicos/editar/:id', component: ServicoPetFormComponent },

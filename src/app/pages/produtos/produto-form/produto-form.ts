@@ -6,6 +6,8 @@ import { Produto } from '../../../model/produto.model';
 import { ProdutoService } from '../../../service/produtos/produto.service';
 import { Fornecedor } from '../../../model/fornecedor.model';
 import { FornecedorService } from '../../../service/fornecedor/forncedor';
+import { CategoriaProduto } from '../../../model/categoria-produto.model';
+import { CategoriaProdutoService } from '../../../service/produtos/categoria.produto';
 
 @Component({
   selector: 'app-produto-form',
@@ -17,6 +19,7 @@ import { FornecedorService } from '../../../service/fornecedor/forncedor';
 export class ProdutoFormComponent implements OnInit {
   private readonly produtoService = inject(ProdutoService);
   private readonly fornecedorService = inject(FornecedorService);
+  private readonly categoriaService = inject(CategoriaProdutoService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
@@ -24,6 +27,7 @@ export class ProdutoFormComponent implements OnInit {
   isEdit = false;
   titulo = 'Novo Produto';
   fornecedores: Fornecedor[] = [];
+  categorias: CategoriaProduto[] = [];
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -37,6 +41,10 @@ export class ProdutoFormComponent implements OnInit {
 
     this.fornecedorService.findAll().subscribe((data) => {
       this.fornecedores = data;
+    });
+
+    this.categoriaService.findAll().subscribe((data) => {
+      this.categorias = data;
     });
   }
 

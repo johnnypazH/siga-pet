@@ -12,6 +12,10 @@
               [value]="termoBusca()"
               (input)="buscar($event)">
           </div>
+          <a routerLink="/produtos/categorias/novo" class="btn btn-outline-secondary text-nowrap me-2">
+            <i class="bi bi-tags me-1"></i>
+            Nova Categoria
+          </a>
           <a routerLink="/produtos/novo" class="btn btn-primary text-nowrap">
             <i class="bi bi-plus-circle me-1"></i>
             Novo Produto
@@ -38,7 +42,7 @@
             </tr>
             <tr *ngFor="let produto of produtosFiltrados()">
               <td>
-                <img [src]="'img/' + produto.fotoUrl" [alt]="produto.nome" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                <img [src]="'assets/img/' + produto.fotoUrl" [alt]="produto.nome" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
               </td>
               <td>{{ produto.nome }}</td>
               <td>{{ produto.categoria }}</td>

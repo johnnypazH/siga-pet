@@ -94,7 +94,7 @@
     {
       "id": "a08c",
       "nome": "emoticom felizq",
-      "categoria": "feliz feliz",
+      "categoria": "outros",
       "preco": 1.99,
       "descricao": "emotico feliz para ser feeliz",
       "fotoUrl": "j.jpg",
@@ -291,6 +291,20 @@
       "tratamento": "Aplicação de vacina V10 (reforço). Exames de sangue normais.",
       "observacoes": "Cão saudável, peso ideal.",
       "funcionarioId": "func01"
+    }
+  ],
+  "categoriasProduto": [
+    {
+      "id": "cat01",
+      "nome": "Alimentação"
+    },
+    {
+      "id": "cat02",
+      "nome": "Brinquedos"
+    },
+    {
+      "id": "e900",
+      "nome": "outros"
     }
   ]
 }
