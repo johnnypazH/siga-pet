@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { Produto } from '../../model/produto.model';
 import { ProdutoService } from '../../service/produtos/produto.service';
-import { FornecedorService } from '../../service/fornecedor/forncedor';
+import { FornecedorService } from '../../service/fornecedor/fornecedor';
 
 @Component({
   selector: 'app-produto-list',
@@ -38,8 +38,8 @@ export class ProdutoListComponent implements OnInit {
 
   ngOnInit(): void {
     forkJoin({
-      produtos: this.produtoService.findAll(),
-      fornecedores: this.fornecedorService.findAll(),
+      produtos: this.produtoService.listar(),
+      fornecedores: this.fornecedorService.listar(),
     }).subscribe(({ produtos, fornecedores }) => {
       this.produtos.set(produtos);
       fornecedores.forEach((f) => this.fornecedorMap.set(f.id, f.nome));
@@ -57,7 +57,7 @@ export class ProdutoListComponent implements OnInit {
 
   excluir(id: string): void {
     if (confirm('Deseja realmente excluir este produto?')) {
-      this.produtoService.delete(id).subscribe(() => {
+      this.produtoService.deletar(id).subscribe(() => {
         this.produtos.update(produtosAtuais => produtosAtuais.filter(p => p.id !== id));
       });
     }

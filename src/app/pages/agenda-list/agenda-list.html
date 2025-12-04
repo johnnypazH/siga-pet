@@ -4,13 +4,14 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2 class="mb-0">Agenda de Serviços</h2>
         <div class="d-flex align-items-center">
-          <form [formGroup]="filtroForm" class="d-flex me-2">
+          <div class="d-flex me-2">
             <input
               type="text"
               class="form-control"
               placeholder="Buscar por nome do pet..."
-              formControlName="petNome">
-            <select class="form-select ms-2" style="width: 150px;" formControlName="status">
+              [ngModel]="filtroPetNome()" (ngModelChange)="filtroPetNome.set($event)">
+            <select class="form-select ms-2" style="width: 150px;"
+              [ngModel]="filtroStatus()" (ngModelChange)="filtroStatus.set($event)">
               <option value="todos">Todos Status</option>
               <option value="Agendado">Agendado</option>
               <option value="Concluído">Concluído</option>
@@ -19,7 +20,7 @@
             <button type="button" class="btn btn-secondary ms-2" (click)="limparFiltros()">
               <i class="bi bi-x-lg"></i>
             </button>
-          </form>
+          </div>
           <a routerLink="/agenda/novo" class="btn btn-primary text-nowrap">
             <i class="bi bi-plus-circle me-1"></i>
             Novo Agendamento
@@ -40,10 +41,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngIf="agendamentos.length === 0">
+            <tr *ngIf="agendamentosFiltrados().length === 0">
               <td colspan="5" class="text-center py-4">Nenhum agendamento encontrado.</td>
             </tr>
-            <tr *ngFor="let ag of agendamentos">
+            <tr *ngFor="let ag of agendamentosFiltrados()">
               <td>{{ ag.data | date:'dd/MM/yyyy HH:mm' }}</td>
               <td>{{ ag.pet?.nome || 'Pet não encontrado' }}</td>
               <td>{{ ag.servico?.nome || 'Serviço não encontrado' }}</td>

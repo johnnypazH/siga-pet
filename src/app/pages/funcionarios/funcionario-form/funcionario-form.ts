@@ -40,7 +40,7 @@ export class FuncionarioFormComponent implements OnInit {
     this.funcionarioId = this.route.snapshot.paramMap.get('id');
     if (this.funcionarioId) {
       this.isEditMode = true;
-      this.funcionarioService.getFuncionario(this.funcionarioId).subscribe(funcionario => {
+      this.funcionarioService.buscarPorId(this.funcionarioId).subscribe(funcionario => {
         this.form.patchValue(funcionario);
       });
     }
@@ -54,7 +54,12 @@ export class FuncionarioFormComponent implements OnInit {
     }
 
     const funcionario: Funcionario = this.form.value;
-    this.funcionarioService.salvar(funcionario).subscribe(() => {
+    const operacao = this.isEditMode && this.funcionarioId
+      ? this.funcionarioService.atualizar(this.funcionarioId, funcionario)
+      : this.funcionarioService.criar(funcionario);
+
+
+    operacao.subscribe(() => {
       this.router.navigate(['/funcionarios']);
     });
   }

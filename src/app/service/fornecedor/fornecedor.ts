@@ -2,31 +2,33 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Fornecedor } from '../../model/fornecedor.model';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FornecedorService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000/fornecedores';
+  private readonly apiUrl = `${environment.apiUrl}/fornecedores`;
 
-  findAll(): Observable<Fornecedor[]> {
+  listar(): Observable<Fornecedor[]> {
     return this.http.get<Fornecedor[]>(this.apiUrl);
   }
 
-  findById(id: string): Observable<Fornecedor> {
+  buscarPorId(id: string): Observable<Fornecedor> {
     return this.http.get<Fornecedor>(`${this.apiUrl}/${id}`);
   }
 
-  create(fornecedor: Fornecedor): Observable<Fornecedor> {
+  criar(fornecedor: Omit<Fornecedor, 'id'>): Observable<Fornecedor> {
     return this.http.post<Fornecedor>(this.apiUrl, fornecedor);
   }
 
-  update(fornecedor: Fornecedor): Observable<Fornecedor> {
-    return this.http.put<Fornecedor>(`${this.apiUrl}/${fornecedor.id}`, fornecedor);
+  atualizar(id: string, fornecedor: Fornecedor): Observable<Fornecedor> {
+    return this.http.put<Fornecedor>(`${this.apiUrl}/${id}`, fornecedor);
   }
 
-  delete(fornecedor: Fornecedor): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${fornecedor.id}`);
+  deletar(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
+export type { Fornecedor };

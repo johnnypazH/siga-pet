@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let fornecedor of fornecedores">
+        <tr *ngFor="let fornecedor of fornecedores()">
           <td>{{ fornecedor.nome }}</td>
           <td>{{ fornecedor.contato }}</td>
           <td>{{ fornecedor.telefone }}</td>
@@ -26,7 +26,7 @@
             <a [routerLink]="['/fornecedores/editar', fornecedor.id]" class="btn btn-sm btn-primary me-2" title="Editar">
               <i class="bi bi-pencil-fill"></i>
             </a>
-            <button (click)="delete(fornecedor)" class="btn btn-sm btn-danger" title="Excluir">
+            <button (click)="deletar(fornecedor)" class="btn btn-sm btn-danger" title="Excluir">
               <i class="bi bi-trash-fill"></i>
             </button>
           </td>

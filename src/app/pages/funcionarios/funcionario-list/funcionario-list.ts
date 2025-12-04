@@ -1,49 +1,49 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { Funcionario } from '../../../model/funcionario.model';
 import { FuncionarioService } from '../../../service/funcionarios/funcionario';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-funcionario-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './funcionario-list.html',
   styleUrls: ['./funcionario-list.scss'],
 })
-export class FuncionarioListComponent implements OnInit {
-  funcionarios: Funcionario[] = [];
-  filtroForm: FormGroup;
+export class FuncionarioListComponent implements OnInit {  
+  private funcionarios = signal<Funcionario[]>([]);
+  filtroNome = signal('');
+  filtroCargo = signal('');
+  filtroAtivo = signal('todos');
 
   private funcionarioService = inject(FuncionarioService);
   private router = inject(Router);
-  private fb = inject(FormBuilder);
 
-  constructor() {
-    this.filtroForm = this.fb.group({
-      nome: [''],
-      cargo: [''],
-      ativo: ['todos']
+  funcionariosFiltrados = computed(() => {
+    const nome = this.filtroNome().toLowerCase();
+    const cargo = this.filtroCargo().toLowerCase();
+    const ativo = this.filtroAtivo();
+
+    return this.funcionarios().filter(func => {
+      const matchNome = !nome || func.nome.toLowerCase().includes(nome);
+      const matchCargo = !cargo || func.cargo.toLowerCase().includes(cargo);
+      const matchAtivo = ativo === 'todos' || String(func.ativo) === ativo;
+      return matchNome && matchCargo && matchAtivo;
     });
-  }
+  });
 
   ngOnInit(): void {
     this.carregarFuncionarios();
-
-    this.filtroForm.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(formValue => this.funcionarioService.getFuncionarios(formValue))
-    ).subscribe(funcionarios => {
-      this.funcionarios = funcionarios;
-    });
   }
 
   carregarFuncionarios(): void {
-    this.funcionarioService.getFuncionarios(this.filtroForm.value).subscribe(data => {
-      this.funcionarios = data;
+    // A API já suporta filtros, mas para consistência com outros componentes
+    // que usam signals para filtrar no client-side, faremos o mesmo aqui.
+    // Em um cenário real, o ideal seria usar o filtro da API.
+    this.funcionarioService.listar().subscribe(data => {
+      this.funcionarios.set(data);
     });
   }
 
@@ -53,14 +53,20 @@ export class FuncionarioListComponent implements OnInit {
 
   excluir(id: string): void {
     if (confirm('Tem certeza que deseja excluir este funcionário?')) {
-      this.funcionarioService.excluir(id).subscribe(() => {
-        this.carregarFuncionarios();
+      this.funcionarioService.deletar(id).subscribe(() => {
+        this.funcionarios.update(funcs => funcs.filter(f => f.id !== id));
       });
     }
   }
 
   limparFiltros(): void {
-    this.filtroForm.reset({ nome: '', cargo: '', ativo: 'todos' });
+    this.filtroNome.set('');
+    this.filtroCargo.set('');
+    this.filtroAtivo.set('todos');
   }
-}
 
+  // Métodos para atualizar os signals de filtro a partir do template
+  onNomeChange(event: Event) { this.filtroNome.set((event.target as HTMLInputElement).value); }
+  onCargoChange(event: Event) { this.filtroCargo.set((event.target as HTMLInputElement).value); }
+  onAtivoChange(event: Event) { this.filtroAtivo.set((event.target as HTMLSelectElement).value); }
+}

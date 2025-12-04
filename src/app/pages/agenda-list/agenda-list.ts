@@ -1,8 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
 
 import { Agenda } from '../../model/agenda.model';
 import { AgendaService } from '../../service/agenda/agenda';
@@ -10,52 +9,48 @@ import { AgendaService } from '../../service/agenda/agenda';
 @Component({
   selector: 'app-agenda-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule, DatePipe],
+  imports: [CommonModule, RouterLink, FormsModule, DatePipe],
   templateUrl: './agenda-list.html',
   styleUrl: './agenda-list.scss'
 })
 export class AgendaListComponent implements OnInit {
-  agendamentos: Agenda[] = [];
-  filtroForm: FormGroup;
+  private agendamentos = signal<Agenda[]>([]);
+  filtroPetNome = signal('');
+  filtroStatus = signal('todos');
 
   private agendaService = inject(AgendaService);
-  private fb = inject(FormBuilder);
 
-  constructor() {
-    this.filtroForm = this.fb.group({
-      petNome: [''],
-      status: ['todos']
+  agendamentosFiltrados = computed(() => {
+    const nome = this.filtroPetNome().toLowerCase();
+    const status = this.filtroStatus();
+
+    return this.agendamentos().filter(ag => {
+      const matchNome = !nome || ag.pet?.nome.toLowerCase().includes(nome);
+      const matchStatus = status === 'todos' || ag.status === status;
+      return matchNome && matchStatus;
     });
-  }
+  });
 
   ngOnInit(): void {
     this.carregarAgendamentos();
-
-    // Atualiza a lista reativamente conforme o usuário digita ou seleciona filtros
-    this.filtroForm.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(formValue => this.agendaService.listar(formValue))
-    ).subscribe(agendamentos => {
-      this.agendamentos = agendamentos;
-    });
   }
 
   carregarAgendamentos(): void {
-    this.agendaService.listar(this.filtroForm.value).subscribe(data => {
-      this.agendamentos = data;
+    this.agendaService.listar().subscribe(data => {
+      this.agendamentos.set(data);
     });
   }
 
   excluir(id: string): void {
     if (confirm('Deseja realmente excluir este agendamento?')) {
       this.agendaService.deletar(id).subscribe(() => {
-        this.carregarAgendamentos();
+        this.agendamentos.update(ags => ags.filter(a => a.id !== id));
       });
     }
   }
 
   limparFiltros(): void {
-    this.filtroForm.reset({ petNome: '', status: 'todos' });
+    this.filtroPetNome.set('');
+    this.filtroStatus.set('todos');
   }
 }

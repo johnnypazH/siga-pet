@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Forncedor } from './forncedor';
+import { FornecedorService } from './fornecedor';
 
 describe('Forncedor', () => {
-  let service: Forncedor;
+  let service: FornecedorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Forncedor);
+    service = TestBed.inject(FornecedorService);
   });
 
   it('should be created', () => {

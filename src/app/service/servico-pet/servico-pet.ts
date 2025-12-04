@@ -2,28 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { ServicoPet } from '../../model/servico-pet.model';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicoPetService {
-  private apiUrl = 'http://localhost:3000/servicos';
+  private apiUrl = `${environment.apiUrl}/servicos`;
 
   constructor(private http: HttpClient) { }
 
-  listar(filtros?: { nome?: string; ativo?: string }): Observable<ServicoPet[]> {
-    let params = new HttpParams();
-    if (filtros) {
-      if (filtros.nome) {
-        // Usa 'nome_like' para busca parcial no nome
-        params = params.append('nome_like', filtros.nome);
-      }
-      if (filtros.ativo && filtros.ativo !== 'todos') {
-        // Filtra por status 'ativo' (true/false)
-        params = params.append('ativo', filtros.ativo === 'true');
-      }
-    }
-    return this.http.get<ServicoPet[]>(this.apiUrl, { params });
+  listar(): Observable<ServicoPet[]> {
+    // A filtragem agora é feita no frontend com Signals, então buscamos todos.
+    return this.http.get<ServicoPet[]>(this.apiUrl);
   }
 
   buscarPorId(id: string): Observable<ServicoPet> {

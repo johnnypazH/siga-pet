@@ -1,0 +1,19 @@
+{
+  "functions": {
+    "source": "back-end/functions"
+  },
+  "hosting": {
+    "public": "dist/siga-pet-app/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

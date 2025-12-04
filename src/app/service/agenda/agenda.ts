@@ -2,34 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Agenda } from '../../model/agenda.model';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AgendaService {
-  private apiUrl = 'http://localhost:3000/agendamentos';
+  private apiUrl = `${environment.apiUrl}/agendamentos`;
 
   constructor(private http: HttpClient) { }
 
-  listar(filtros?: { petNome?: string; status?: string }): Observable<Agenda[]> {
-    // Sempre expande para trazer os dados do pet e do serviço junto com o agendamento.
-    let params = new HttpParams().append('_expand', 'pet').append('_expand', 'servico');
-    
-    // A busca por status pode ser feita diretamente na API
-    if (filtros?.status && filtros.status !== 'todos') {
-      params = params.append('status', filtros.status);
-    }
-
-    return this.http.get<Agenda[]>(this.apiUrl, { params }).pipe(
-      // O filtro por nome do pet é feito no lado do cliente (Angular)
-      map(agendamentos => {
-        if (!filtros?.petNome) {
-          return agendamentos; // Se não há filtro de nome, retorna tudo
-        }
-        // Filtra os agendamentos cujo pet (se existir) tenha o nome que corresponde ao filtro
-        return agendamentos.filter(ag => ag.pet?.nome.toLowerCase().includes(filtros.petNome!.toLowerCase()));
-      })
-    );
+  listar(): Observable<Agenda[]> {
+    // Para simplificar e evitar erros de índice no Firestore,
+    // buscamos todos os agendamentos e expandimos os dados de pet e serviço.
+    // A filtragem será feita no frontend com Signals.
+    const params = new HttpParams().set('_expand', 'pet').set('_expand', 'servico');
+    return this.http.get<Agenda[]>(this.apiUrl, { params });
   }
 
   buscarPorId(id: string): Observable<Agenda> {
